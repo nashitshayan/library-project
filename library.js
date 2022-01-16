@@ -2,12 +2,24 @@ let myLibrary= [];
 
 
 const bookCardsDiv= document.querySelector('.bookcards');
+const deleteBookBtnList= document.querySelectorAll('#delete');
+
+
+// deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
+
 
 const createNewBookCard= (title,author,pages,isRead)=>{
     //create the bookcard wrapper div and add to bookcards
      let bookCard= document.createElement('div');
      bookCard.classList.add("bookcard");
     bookCardsDiv.appendChild(bookCard);
+
+    // create and add the delete icon
+    let delBtnIcon= document.createElement('i');
+    delBtnIcon.id='delete';
+    delBtnIcon.classList.add('fas', 'fa-minus-circle', 'fa-lg')
+    // console.log(delBtnIcon)
+
 
     //create and add the four child wrapper divs to bookcard
 
@@ -16,7 +28,7 @@ const createNewBookCard= (title,author,pages,isRead)=>{
     let bookPageCountWrapper= document.createElement('div');
     let bookReadStatusWrapper= document.createElement('div');
 
-    bookCard.append(bookTitleWrapper, bookAuthorWrapper, bookPageCountWrapper, bookReadStatusWrapper);
+    bookCard.append(delBtnIcon,bookTitleWrapper, bookAuthorWrapper, bookPageCountWrapper, bookReadStatusWrapper);
 
     //create and add two child divs for each wrapper
     
@@ -87,4 +99,12 @@ addBookToLibrary(b1,b2,b3,b4,b5,b6)
 myLibrary.forEach(book => {
     createNewBookCard(book.title, book.author, book.pages, book.isRead);
     
+})
+
+
+
+
+deleteBookBtnList.forEach(deleteBookBtn => {
+    deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
+    console.log(deleteBookBtn)
 })
