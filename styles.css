@@ -61,11 +61,17 @@ header{
     position: relative;
 
 }
-i{
+#delete{
     position: absolute;
     right: 10px;
     margin-top: 0.5rem;
+    color: var(--clr--accentTwo);
 }
+#delete:hover{
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
 .bookcard> *{
     /* border: 1px solid black; */
     display: flex;
@@ -79,11 +85,27 @@ i{
 }
 
 .bookcard div > div + div {
-    color: var(--clr--accentTwo);
+    color: #111;
     font-size: 1.3rem;
     margin-right: 1rem;
 }
 
+#addNew{
+    background: var(--clr--neutral);
+    border: 2px solid var(--clr--secondary);
+    border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+}
+#addNew:hover{
+    font-size: 1.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    cursor: pointer;
+}
 
 footer{
     background-color: var(--clr--secondary);

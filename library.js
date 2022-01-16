@@ -104,7 +104,15 @@ myLibrary.forEach(book => {
 
 
 
-deleteBookBtnList.forEach(deleteBookBtn => {
-    deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
-    console.log(deleteBookBtn)
+// deleteBookBtnList.forEach(deleteBookBtn => {
+//     deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
+//     console.log(deleteBookBtn)
+// })
+
+
+bookCardsDiv.addEventListener('click', (e)=>{
+    console.log(e.target.id)
+    if(e.target.id==='delete')
+        bookCardsDiv.removeChild(e.target.parentElement);
+    
 })
