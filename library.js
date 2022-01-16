@@ -2,13 +2,8 @@ let myLibrary= [];
 
 
 const bookCardsDiv= document.querySelector('.bookcards');
- const bookTitle = document.querySelector('.bookTitle');
- const bookAuthor = document.querySelector('.bookAuthor');
- const bookPageCount = document.querySelector('.bookPageCount');
- const bookReadStatus = document.querySelector('.bookReadStatus');
 
- console.log(bookCardsDiv)
- const createNewBookCard= ()=>{
+const createNewBookCard= (title,author,pages,isRead)=>{
     //create the bookcard wrapper div and add to bookcards
      let bookCard= document.createElement('div');
      bookCard.classList.add("bookcard");
@@ -50,16 +45,23 @@ const bookCardsDiv= document.querySelector('.bookcards');
     bookPageCountWrapper.append(bookPageCountLabel, bookPageCountHolder);
     bookReadStatusWrapper.append(bookReadStatusLabel, bookReadStatusHolder);
 
+    //add title, author, pages, isRead to each Holder div as per the input
+
+    bookTitleHolder.textContent= title;
+    bookAuthorHolder.textContent= author;
+    bookPageCountHolder.textContent= pages;
+    bookReadStatusHolder.textContent= isRead;
+
  }
 
-  createNewBookCard();
+
 
 //Book ctor
 function Book(title,author,pages,isRead) {
     this.title= title;
     this.author= author;
-    this.pages = pages;
-    this.isRead= isRead? 'read' : 'not read yet';
+    this.pages = pages + ' pages';
+    this.isRead= isRead? 'Read' : 'Not Read Yet';
 }
 
 Book.prototype.info = function(){
@@ -81,4 +83,8 @@ let b6= new Book('Killing Floor', 'Lee Child', 296, false);
 
 addBookToLibrary(b1,b2,b3,b4,b5,b6)
 
-  console.log(myLibrary)
+
+myLibrary.forEach(book => {
+    createNewBookCard(book.title, book.author, book.pages, book.isRead);
+    
+})
