@@ -6,7 +6,7 @@ const deleteBookBtnList= document.querySelectorAll('#delete');
 const addNewBookFormDiv= document.querySelector('.newBookFormWrapper');
 const newBookForm= document.getElementById('newBookForm');
 const submitNewBookFormBtn= document.getElementById('submitForm');
-
+let readingStatus= document.querySelector('.bookReadStatus');
 
 // deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
 
@@ -67,6 +67,12 @@ const createNewBookCard= (title,author,pages,isRead)=>{
     bookPageCountHolder.textContent= pages;
     bookReadStatusHolder.textContent= isRead;
 
+    //create and add the update status btn
+    let updateReadStatusBtn= document.createElement('button');
+    updateReadStatusBtn.id= 'changeReadStatus';
+    updateReadStatusBtn.textContent= 'Update Status';
+
+    bookCard.appendChild(updateReadStatusBtn);
  }
 
 
@@ -111,12 +117,20 @@ bookCardsDiv.addEventListener('click', (e)=>{
             bookCardsDiv.style.display='none';
             addNewBookFormDiv.style.display='flex';
         }
+    else if(e.target.id==='changeReadStatus')
+        {   
+            if(e.target.previousElementSibling.lastElementChild.textContent==='Read')
+                e.target.previousElementSibling.lastElementChild.textContent='Not Read Yet'
+            else
+                e.target.previousElementSibling.lastElementChild.textContent='Read';
+            
+        }
     
 })
 
 submitNewBookFormBtn.addEventListener('click', (e)=>{
     e.preventDefault();
-    
+
     let isRead= newBookForm.elements['readingStatus'].value==='read'? true: false;
 
     let newBook= new Book(newBookForm.elements['title'].value
@@ -126,6 +140,7 @@ submitNewBookFormBtn.addEventListener('click', (e)=>{
     addBookToLibrary(newBook)
     createNewBookCard(newBook.title, newBook.author, newBook.pages, newBook.isRead)
    
-   bookCardsDiv.style.display='flex';
+    bookCardsDiv.style.display='flex';
     addNewBookFormDiv.style.display='none';
+    newBook.submit();
 })

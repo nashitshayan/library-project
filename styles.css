@@ -55,7 +55,7 @@ main{
     }
   }
 .bookcard{
-    height: 300px;
+    height: 350px;
     width: 400px;
     padding: 1rem;
     border: 3px solid var(--clr--secondary); 
@@ -166,9 +166,29 @@ main{
     background-color: var(--clr--accentTwo);
     color: var(--clr--neutral);
     font-size: 1.2rem;
+    
+    transition: 0.2s ease-in-out;
 }
 #submitForm:hover{
-    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 1.4rem;
+    background-color: var(--clr--accentOne);
+    cursor: pointer;
+}
+
+#changeReadStatus{
+    display: flex;
+    justify-content: center;
+    background-color: var(--clr--accentTwo);
+    color: var(--clr--neutral);
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    transition: 0.2s ease-in-out;
+
+}
+#changeReadStatus:hover{
+    font-size: 1.3rem;
     background-color: var(--clr--accentOne);
     cursor: pointer;
 }
@@ -189,3 +209,4 @@ footer a{
     text-decoration: none;
     color: var(--clr--accentOne);
 }
+

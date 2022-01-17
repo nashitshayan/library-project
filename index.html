@@ -15,7 +15,7 @@
     </header>
     <main id="main">
         <div class="bookcards">
-            <div class="bookcard">
+            <!-- <div class="bookcard">
                 <i id='delete'class="fas fa-minus-circle fa-lg"></i>
                 <div>
                     <div >Title: </div>
@@ -31,31 +31,32 @@
                 </div>
                 <div>
                     <div >Reading Status: </div>
-                    <div class="bookReadStatus">sdfsdfsd</div>
+                    <div class="bookReadStatus">Read</div>
                 </div>
+                <button id='changeReadStatus'>Update Status</button>
             
-            </div>
-            <button id="addNew">Add <i class="fas fa-book"></i></button>
+            </div>-->
+            <button id="addNew">Add <i class="fas fa-book"></i></button> 
         </div>
         
         <div class="newBookFormWrapper">
             <form action="#" id="newBookForm">
                 <div>
                     <label for="title">Title: </label>
-                    <input type="text" id="title">
+                    <input type="text" id="title" required>
                 </div>
                 <div>
                     <label for="title">Author: </label>
-                    <input type="text" id="author">
+                    <input type="text" id="author" required>
                 </div>
                 <div>
                     <label for="title">Page Count: </label>
-                    <input type="number" min='0' id="pgCount">
+                    <input type="number" min='0' id="pgCount" required>
                 </div>
                 <div>
                     <label for="title">Reading Status: </label>
                     <div>
-                        <input type="radio" id="read" name="readingStatus" value="read">
+                        <input type="radio" id="read" name="readingStatus" value="read" >
                         <label for="read">Read</label> 
                     </div>
                    <div>
