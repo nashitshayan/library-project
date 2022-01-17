@@ -26,7 +26,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 
 header{
@@ -34,6 +33,12 @@ header{
     font-size: 1.2rem;
     text-align: center;
     margin-bottom: 2rem;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bookcards{
@@ -59,6 +64,7 @@ header{
     font-weight: 500;
     display: grid;
     position: relative;
+    background-color: var(--clr--neutral);
 
 }
 #delete{
@@ -98,36 +104,30 @@ header{
     padding: 0.5rem;
     position: fixed;
     right: 1rem;
-    bottom: 1rem;
+    bottom: 4rem;
+    z-index: 1;
 }
 #addNew:hover{
     font-size: 1.75rem;
     right: 0.75rem;
-    bottom: 0.75rem;
+    bottom: 3.75rem; 
     cursor: pointer;
 }
 
 
 .newBookFormWrapper {
      background-color: var(--clr--neutral);
-     position: absolute;
-     /* height: 300px;
-     width: 400px; */
-     top: 20%;
-     left: 7%; 
      font-size: 1.2rem;
      font-weight: 500;
-     border: 0px solid var(--clr--secondary);
      border-radius: 8px;
-    display: flex;
+    display: none;
     flex-direction: column;
-    }
+}
 
 #newBookForm{
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around; */
-
+    
 }
 #newBookForm> * {
     border-bottom: 1px solid var(--clr--secondary);
@@ -135,10 +135,7 @@ header{
     display: flex;
     justify-content: space-between;
  }
- /*
-#newBookForm > div:last-child {
-    border-bottom: none;
-} */
+ 
 
 #newBookForm div>*{
      display: flex;
@@ -161,7 +158,8 @@ header{
 }
 #submitForm{
     padding: 1.5rem;
-    margin-left: 0 auto;
+    display: flex;
+    justify-content: center;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border: none;

@@ -3,6 +3,9 @@ let myLibrary= [];
 
 const bookCardsDiv= document.querySelector('.bookcards');
 const deleteBookBtnList= document.querySelectorAll('#delete');
+const addNewBookFormDiv= document.querySelector('.newBookFormWrapper');
+const newBookForm= document.getElementById('newBookForm');
+const submitNewBookFormBtn= document.getElementById('submitForm');
 
 
 // deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
@@ -81,9 +84,7 @@ Book.prototype.info = function(){
 };
 
 const addBookToLibrary= (...books)=>{
-  //  console.log(books)
     books.forEach(book=>  myLibrary.push(book))
-   
 };
 
 let b1= new Book('One Shot', 'Lee Child', 296, false);
@@ -98,21 +99,33 @@ addBookToLibrary(b1,b2,b3,b4,b5,b6)
 
 myLibrary.forEach(book => {
     createNewBookCard(book.title, book.author, book.pages, book.isRead);
-    
 })
-
-
-
-
-// deleteBookBtnList.forEach(deleteBookBtn => {
-//     deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
-//     console.log(deleteBookBtn)
-// })
 
 
 bookCardsDiv.addEventListener('click', (e)=>{
     console.log(e.target.id)
     if(e.target.id==='delete')
         bookCardsDiv.removeChild(e.target.parentElement);
+    else if(e.target.id==='addNew')
+        {
+            bookCardsDiv.style.display='none';
+            addNewBookFormDiv.style.display='flex';
+        }
     
+})
+
+submitNewBookFormBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    
+    let isRead= newBookForm.elements['readingStatus'].value==='read'? true: false;
+
+    let newBook= new Book(newBookForm.elements['title'].value
+    , newBookForm.elements['author'].value
+    , newBookForm.elements['pgCount'].value, isRead);
+
+    addBookToLibrary(newBook)
+    createNewBookCard(newBook.title, newBook.author, newBook.pages, newBook.isRead)
+   
+   bookCardsDiv.style.display='flex';
+    addNewBookFormDiv.style.display='none';
 })
