@@ -11,11 +11,11 @@
 </head>
 <body>
     <header>
-        <h1>EatSleepReadRepeat</h1>
+        <h1>NK Digital Library</h1>
     </header>
     <main id="main">
         <div class="bookcards">
-            <div class="bookcard">
+            <!-- <div class="bookcard">
                 <i id='delete'class="fas fa-minus-circle fa-lg"></i>
                 <div>
                     <div >Title: </div>
@@ -34,9 +34,39 @@
                     <div class="bookReadStatus">sdfsdfsd</div>
                 </div>
             
-            </div>
+            </div> -->
         </div>
         <button id="addNew">Add <i class="fas fa-book"></i></button>
+        <div class="newBookFormWrapper">
+            <form action="#" id="newBookForm">
+                <div>
+                    <label for="title">Title: </label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="title">Author: </label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="title">Page Count: </label>
+                    <input type="number" min='0'>
+                </div>
+                <div>
+                    <label for="title">Reading Status: </label>
+                    <div>
+                        <input type="radio" id="read" name="readingStatus" value="read">
+                        <label for="read">Read</label> 
+                    </div>
+                   <div>
+                        <input type="radio" id="notRead" name="readingStatus" value="notRead">
+                        <label for="notRead">Not Read</label>  
+                   </div> 
+                    
+                </div>
+                
+            </form>
+            <button id="submitForm">Add New Book</button>
+        </div>
     </main>
     <footer>
         Made by <a href="https://github.com/nashitshayan">Nashit Shayan Khan</a> as a part of The Odin Project curriculum.  Find the repo <a href="https://github.com/nashitshayan/library-project">here</a>.

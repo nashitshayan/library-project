@@ -107,6 +107,74 @@ header{
     cursor: pointer;
 }
 
+
+.newBookFormWrapper {
+     background-color: var(--clr--neutral);
+     position: absolute;
+     /* height: 300px;
+     width: 400px; */
+     top: 20%;
+     left: 7%; 
+     font-size: 1.2rem;
+     font-weight: 500;
+     border: 0px solid var(--clr--secondary);
+     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    }
+
+#newBookForm{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-around; */
+
+}
+#newBookForm> * {
+    border-bottom: 1px solid var(--clr--secondary);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+ }
+ /*
+#newBookForm > div:last-child {
+    border-bottom: none;
+} */
+
+#newBookForm div>*{
+     display: flex;
+    align-items: center;
+}
+#newBookForm div label{
+    margin-right: 0.75rem;
+}
+
+#newBookForm input{
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+#newBookForm input[type= 'radio']{
+    transform: scale(1.5);
+    margin-right: 0.5rem;
+}
+#newBookForm input[type= 'radio']:hover{
+    cursor: pointer;
+}
+#submitForm{
+    padding: 1.5rem;
+    margin-left: 0 auto;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: none;
+    background-color: var(--clr--accentTwo);
+    color: var(--clr--neutral);
+    font-size: 1.2rem;
+}
+#submitForm:hover{
+    font-weight: 600;
+    background-color: var(--clr--accentOne);
+    cursor: pointer;
+}
+
 footer{
     background-color: var(--clr--secondary);
     font-family: var(--ff--secondary);
