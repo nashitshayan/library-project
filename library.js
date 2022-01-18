@@ -8,24 +8,21 @@ const newBookForm= document.getElementById('newBookForm');
 const submitNewBookFormBtn= document.getElementById('submitForm');
 let readingStatus= document.querySelector('.bookReadStatus');
 
-// deleteBookBtn.addEventListener('click', ()=>{bookCardsDiv.removeChild(deleteBookBtn.parentElement)})
-
 
 const createNewBookCard= (title,author,pages,isRead)=>{
     //create the bookcard wrapper div and add to bookcards
-     let bookCard= document.createElement('div');
-     bookCard.classList.add("bookcard");
+    let bookCard= document.createElement('div');
+    bookCard.classList.add("bookcard");
     bookCardsDiv.appendChild(bookCard);
+
 
     // create and add the delete icon
     let delBtnIcon= document.createElement('i');
     delBtnIcon.id='delete';
     delBtnIcon.classList.add('fas', 'fa-minus-circle', 'fa-lg')
-    // console.log(delBtnIcon)
-
+    
 
     //create and add the four child wrapper divs to bookcard
-
     let bookTitleWrapper= document.createElement('div');
     let bookAuthorWrapper= document.createElement('div');
     let bookPageCountWrapper= document.createElement('div');
@@ -33,8 +30,8 @@ const createNewBookCard= (title,author,pages,isRead)=>{
 
     bookCard.append(delBtnIcon,bookTitleWrapper, bookAuthorWrapper, bookPageCountWrapper, bookReadStatusWrapper);
 
+
     //create and add two child divs for each wrapper
-    
     let bookTitleLabel= document.createElement('div');
     bookTitleLabel.textContent='Title: ';
     let bookTitleHolder= document.createElement('div');
@@ -60,13 +57,14 @@ const createNewBookCard= (title,author,pages,isRead)=>{
     bookPageCountWrapper.append(bookPageCountLabel, bookPageCountHolder);
     bookReadStatusWrapper.append(bookReadStatusLabel, bookReadStatusHolder);
 
+    
     //add title, author, pages, isRead to each Holder div as per the input
-
     bookTitleHolder.textContent= title;
     bookAuthorHolder.textContent= author;
     bookPageCountHolder.textContent= pages;
     bookReadStatusHolder.textContent= isRead;
 
+    
     //create and add the update status btn
     let updateReadStatusBtn= document.createElement('button');
     updateReadStatusBtn.id= 'changeReadStatus';
@@ -85,14 +83,23 @@ function Book(title,author,pages,isRead) {
     this.isRead= isRead? 'Read' : 'Not Read Yet';
 }
 
-Book.prototype.info = function(){
-    return `${this.title} by ${this.author}, ${this.pages } pages, ${this.isRead}`;
-};
+// Book.prototype.info = function(){
+//     return `${this.title} by ${this.author}, ${this.pages } pages, ${this.isRead}`;
+// };
+
+
+// Book.prototype.changeReadStatus= function(currentStatus)
+// {
+//     return currentStatus==='Read'? 'Not Read Yet' : 'Read';
+// }
+
+// console.log(myLibrary[0].changeReadStatus('Read'))
 
 const addBookToLibrary= (...books)=>{
     books.forEach(book=>  myLibrary.push(book))
 };
 
+//hard coding some sample books
 let b1= new Book('One Shot', 'Lee Child', 296, false);
 let b2= new Book('Harry Potter', 'J.K. Rowling', 560, false);
 let b3= new Book('Fellowship of the Ring', 'J.R.R. Tolkein', 690, false);
@@ -102,14 +109,15 @@ let b6= new Book('Killing Floor', 'Lee Child', 296, false);
 
 addBookToLibrary(b1,b2,b3,b4,b5,b6)
 
-
+//make a book card for each book in the library
 myLibrary.forEach(book => {
     createNewBookCard(book.title, book.author, book.pages, book.isRead);
 })
 
 
+//event lister on the parent div for event delegation. 
 bookCardsDiv.addEventListener('click', (e)=>{
-    console.log(e.target.id)
+    
     if(e.target.id==='delete')
         bookCardsDiv.removeChild(e.target.parentElement);
     else if(e.target.id==='addNew')
@@ -128,19 +136,26 @@ bookCardsDiv.addEventListener('click', (e)=>{
     
 })
 
-submitNewBookFormBtn.addEventListener('click', (e)=>{
+//new Book Form submit
+newBookForm.addEventListener('submit', (e)=>{
     e.preventDefault();
 
-    let isRead= newBookForm.elements['readingStatus'].value==='read'? true: false;
+    const formData = new FormData(e.target);
+    const entries = formData.entries(); 
+    const data = Object.fromEntries(entries);
+    
+    console.log(data['title'], data['author'], data['pgCount'], data['readingStatus'])
+    
+    let isRead= data['readingStatus']==='read'? true: false;
 
-    let newBook= new Book(newBookForm.elements['title'].value
-    , newBookForm.elements['author'].value
-    , newBookForm.elements['pgCount'].value, isRead);
-
+    let newBook= new Book(data['title'],
+                            data['author'],
+                            data['pgCount'], 
+                            isRead);
     addBookToLibrary(newBook)
     createNewBookCard(newBook.title, newBook.author, newBook.pages, newBook.isRead)
-   
+    newBookForm.reset();
     bookCardsDiv.style.display='flex';
     addNewBookFormDiv.style.display='none';
-    newBook.submit();
+    
 })

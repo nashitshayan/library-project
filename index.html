@@ -43,25 +43,25 @@
             <form action="#" id="newBookForm">
                 <div>
                     <label for="title">Title: </label>
-                    <input type="text" id="title" required>
+                    <input type="text" id="title" name="title" required>
                 </div>
                 <div>
-                    <label for="title">Author: </label>
-                    <input type="text" id="author" required>
+                    <label for="author">Author: </label>
+                    <input type="text" id="author" name="author" required>
                 </div>
                 <div>
-                    <label for="title">Page Count: </label>
-                    <input type="number" min='0' id="pgCount" required>
+                    <label for="pgCount">Page Count: </label>
+                    <input type="number" min='0' id="pgCount" name="pgCount" required>
                 </div>
                 <div>
-                    <label for="title">Reading Status: </label>
+                    <label for="readingStatus">Reading Status: </label>
                     <div>
                         <input type="radio" id="read" name="readingStatus" value="read" >
                         <label for="read">Read</label> 
                     </div>
                    <div>
-                        <input type="radio" id="notRead" name="readingStatus" value="notRead">
-                        <label for="notRead">Not Read</label>  
+                        <input type="radio" id="notRead" name="readingStatus" value="notRead" checked>
+                        <label for="readingStatus">Not Read</label>  
                    </div> 
                     
                 </div>
