@@ -65,6 +65,7 @@ main{
     display: grid;
     position: relative;
     background-color: var(--clr--neutral);
+    
 
 }
 #delete{
@@ -82,9 +83,10 @@ main{
     /* border: 1px solid black; */
     display: flex;
     align-items: center;
+
     
 }
-.bookcard div{
+.bookcard >div{
     display: flex;
     justify-content: space-between;
     /* border: 1px solid green; */
@@ -94,8 +96,14 @@ main{
     color: #111;
     font-size: 1.3rem;
     margin-right: 1rem;
+    min-width: 0;
+    max-width: 17rem;
 }
-
+.overflow{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 #addNew{
     background: var(--clr--neutral);
     border: 2px solid var(--clr--secondary);

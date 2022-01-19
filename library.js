@@ -36,11 +36,19 @@ const createNewBookCard= (title,author,pages,isRead)=>{
     bookTitleLabel.textContent='Title: ';
     let bookTitleHolder= document.createElement('div');
     bookTitleHolder.classList.add('bookTitle');
+    let bookTitlePara= document.createElement('p');
+    bookTitleHolder.appendChild(bookTitlePara);
+    bookTitlePara.classList.add('overflow');
+
 
     let bookAuthorLabel= document.createElement('div');
     bookAuthorLabel.textContent='Author: ';
     let bookAuthorHolder= document.createElement('div');
     bookAuthorHolder.classList.add('bookAuthor');
+    let bookAuthorPara= document.createElement('p');
+    bookAuthorHolder.appendChild(bookAuthorPara);
+    bookAuthorPara.classList.add('overflow');
+
 
     let bookPageCountLabel= document.createElement('div');
     bookPageCountLabel.textContent='Page Count: ';
@@ -59,8 +67,8 @@ const createNewBookCard= (title,author,pages,isRead)=>{
 
     
     //add title, author, pages, isRead to each Holder div as per the input
-    bookTitleHolder.textContent= title;
-    bookAuthorHolder.textContent= author;
+    bookTitlePara.textContent= title;
+    bookAuthorPara.textContent= author;
     bookPageCountHolder.textContent= pages;
     bookReadStatusHolder.textContent= isRead;
 
