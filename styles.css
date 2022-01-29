@@ -68,16 +68,26 @@ main{
     
 
 }
-#delete{
+#delete, #closeNewBookForm{
     position: absolute;
-    right: 10px;
-    margin-top: 0.5rem;
     color: var(--clr--accentTwo);
+    transition: 0.1s ease-in-out;
 }
-#delete:hover{
+#delete{
+    right: 10px;
+    top: 5px;
+}
+#closeNewBookForm{
+    right: 5px;
+    top: 5px;
+    font-size: 1.2rem;
+}
+#delete:hover, #closeNewBookForm:hover{
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    color: var(--clr--accentOne);
 }
+
 
 .bookcard> *{
     /* border: 1px solid black; */
@@ -130,11 +140,13 @@ main{
      border-radius: 8px;
     display: none;
     flex-direction: column;
+    position: relative;
 }
 
 #newBookForm{
     display: flex;
     flex-direction: column;
+    /* padding-top: 0.5rem; */
     
 }
 #newBookForm> * {
