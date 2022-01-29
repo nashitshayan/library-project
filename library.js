@@ -1,6 +1,8 @@
 let myLibrary= [];
 
 
+
+
 const bookCardsDiv= document.querySelector('.bookcards');
 const deleteBookBtnList= document.querySelectorAll('#delete');
 const addNewBookFormDiv= document.querySelector('.newBookFormWrapper');
@@ -84,28 +86,22 @@ const createNewBookCard= (title,author,pages,isRead)=>{
 
 
 //Book ctor
-function Book(title,author,pages,isRead) {
-    this.title= title;
-    this.author= author;
-    this.pages = pages + ' pages';
-    this.isRead= isRead? 'Read' : 'Not Read Yet';
+class Book{
+
+    constructor(title,author,pages,isRead){
+        this.title= title;
+        this.author= author;
+        this.pages = pages + ' pages';
+        this.isRead= isRead? 'Read' : 'Not Read Yet';
+    }
+
+   static addBookToLibrary (...books){
+        books.forEach(book=>  myLibrary.push(book))
+    }
+    
 }
 
-// Book.prototype.info = function(){
-//     return `${this.title} by ${this.author}, ${this.pages } pages, ${this.isRead}`;
-// };
 
-
-// Book.prototype.changeReadStatus= function(currentStatus)
-// {
-//     return currentStatus==='Read'? 'Not Read Yet' : 'Read';
-// }
-
-// console.log(myLibrary[0].changeReadStatus('Read'))
-
-const addBookToLibrary= (...books)=>{
-    books.forEach(book=>  myLibrary.push(book))
-};
 
 //hard coding some sample books
 let b1= new Book('One Shot', 'Lee Child', 296, false);
@@ -115,7 +111,8 @@ let b4= new Book('The Two Towers', 'J.R.R. Tolkein', 450, false);
 let b5= new Book('The Return of The King', 'J.R.R. Tolkein', 750, false);
 let b6= new Book('Killing Floor', 'Lee Child', 296, false);
 
-addBookToLibrary(b1,b2,b3,b4,b5,b6)
+Book.addBookToLibrary(b1,b2,b3,b4,b5,b6)
+
 
 //make a book card for each book in the library
 myLibrary.forEach(book => {
@@ -151,16 +148,13 @@ newBookForm.addEventListener('submit', (e)=>{
     const formData = new FormData(e.target);
     const entries = formData.entries(); 
     const data = Object.fromEntries(entries);
-    
-    console.log(data['title'], data['author'], data['pgCount'], data['readingStatus'])
-    
     let isRead= data['readingStatus']==='read'? true: false;
 
     let newBook= new Book(data['title'],
                             data['author'],
                             data['pgCount'], 
                             isRead);
-    addBookToLibrary(newBook)
+    Book.addBookToLibrary(newBook)
     createNewBookCard(newBook.title, newBook.author, newBook.pages, newBook.isRead)
     newBookForm.reset();
     bookCardsDiv.style.display='flex';
