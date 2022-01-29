@@ -30,9 +30,11 @@ body{
 
 header{
     padding: 2rem;
+    background-color: var(--clr--secondary);
+    color: var(--clr--neutral);
     font-size: 1.2rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 main{
@@ -228,5 +230,10 @@ footer{
 footer a{
     text-decoration: none;
     color: var(--clr--accentOne);
+    transform: 0.1s ease-in-out;
+}
+footer a:hover{
+    text-decoration: none;
+    color: #f31827;
 }
 
