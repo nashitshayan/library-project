@@ -34,13 +34,13 @@ header{
     color: var(--clr--neutral);
     font-size: 1.2rem;
     text-align: center;
-    margin-bottom: 3rem;
 }
 
 main{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 3rem 1rem;
 }
 
 .bookcards{
@@ -48,7 +48,8 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
+    
 }
 
 @media only screen and (min-width: 600px) {
@@ -60,7 +61,8 @@ main{
 
 .bookcard{
     height: 350px;
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
     padding: 1rem;
     border: 3px solid var(--clr--secondary); 
     border-radius: 8px;
@@ -186,7 +188,6 @@ main{
     background-color: var(--clr--accentTwo);
     color: var(--clr--neutral);
     font-size: 1.2rem;
-    
     transition: 0.2s ease-in-out;
 }
 #submitForm:hover{
@@ -217,13 +218,10 @@ footer{
     background-color: var(--clr--secondary);
     font-family: var(--ff--secondary);
     color: var(--clr--neutral);
-    margin-top: 2rem;
     padding: 2rem;
     text-align: center;
     word-spacing: 0.1rem;
     letter-spacing: 0.1rem;
-    /* position: absolute;
-    bottom: 0; */
 }
 footer a{
     text-decoration: none;
