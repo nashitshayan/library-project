@@ -25,12 +25,18 @@ class Book{
     }
 
    static addBookToLibrary (...books){
-        books.forEach(book=>  myLibrary.push(book))
+        books.forEach(book=>  myLibrary.push(book));
+    }
+
+    static setLocalStorage(){
+        window.localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
     }
     
 }
 
 
+
+//console.log(arr)
 
 //hard coding some sample books
 let b1= new Book('One Shot', 'Lee Child', 296, false);
@@ -39,6 +45,7 @@ let b3= new Book('Fellowship of the Ring', 'J.R.R. Tolkein', 690, false);
 let b4= new Book('The Two Towers', 'J.R.R. Tolkein', 450, false);
 let b5= new Book('The Return of The King', 'J.R.R. Tolkein', 750, false);
 let b6= new Book('Killing Floor', 'Lee Child', 296, false);
+let b7= new Book('Tripwire', 'Lee Child', 396, false);
 
 Book.addBookToLibrary(b1,b2,b3,b4,b5,b6)
 
@@ -46,10 +53,11 @@ Book.addBookToLibrary(b1,b2,b3,b4,b5,b6)
 
 // function to create and populate book cards
 
-const createNewBookCard= (title,author,pages,isRead)=>{
+const createNewBookCard= (key ,title,author,pages,isRead)=>{
     //create the bookcard wrapper div and add to bookcards
     let bookCard= document.createElement('div');
     bookCard.classList.add("bookcard");
+    bookCard.dataset.keyIndex= key;
     domElements.bookCardsDiv.appendChild(bookCard);
 
 
@@ -118,17 +126,22 @@ const createNewBookCard= (title,author,pages,isRead)=>{
     bookCard.appendChild(updateReadStatusBtn);
  }
 
-//make a book card for each book in the library
-myLibrary.forEach(book => {
-    createNewBookCard(book.title, book.author, book.pages, book.isRead);
-})
-
 
 //event lister on the parent div for event delegation. 
 domElements.bookCardsDiv.addEventListener('click', (e)=>{
     
     if(e.target.id==='delete')
-        domElements.bookCardsDiv.removeChild(e.target.parentElement);
+        {   
+            //remove the bookcard from the DOM
+            domElements.bookCardsDiv.removeChild(e.target.parentElement);
+            
+            //delete book from library
+            myLibrary.splice(e.target.parentElement.dataset.keyIndex,1)
+            
+            // reset the data-key-index of remaining bookcards so that all of them are from 0-n
+            let bookCardsList= document.querySelectorAll('.bookcard');
+                bookCardsList.forEach((bookcard, index) =>bookcard.dataset.keyIndex=index);
+        }
     else if(e.target.id==='addNew')
         {
             domElements.bookCardsDiv.style.display='none';
@@ -136,14 +149,29 @@ domElements.bookCardsDiv.addEventListener('click', (e)=>{
         }
     else if(e.target.id==='changeReadStatus')
         {   
-            if(e.target.previousElementSibling.lastElementChild.textContent==='Read')
-                e.target.previousElementSibling.lastElementChild.textContent='Not Read Yet'
+            let currentReadingStatus= e.target.previousElementSibling.lastElementChild;
+            let currentBook = e.target.parentElement;
+            if(currentReadingStatus.textContent==='Read')
+                { 
+                    //change reading status in the DOM
+                    currentReadingStatus.textContent='Not Read Yet';
+                    //change the reading status in the library arr
+                    myLibrary[currentBook.dataset.keyIndex].isRead= 'Not Read Yet'
+                }
             else
-                e.target.previousElementSibling.lastElementChild.textContent='Read';
+               {
+                   //change reading status in the DOM
+                   currentReadingStatus.textContent='Read';
+                   //change the reading status in the library arr
+                   myLibrary[currentBook.dataset.keyIndex].isRead= 'Read';
+                } 
             
         }
     
+    //set the local storage library to the current updated library
+    Book.setLocalStorage();
 })
+
 
 //new Book Form submit
 domElements.newBookForm.addEventListener('submit', (e)=>{
@@ -154,16 +182,21 @@ domElements.newBookForm.addEventListener('submit', (e)=>{
     const data = Object.fromEntries(entries);
     let isRead= data['readingStatus']==='read'? true: false;
 
-    let newBook= new Book(data['title'],
-                            data['author'],
-                            data['pgCount'], 
-                            isRead);
+    let newBook= new Book(data['title'], data['author'], data['pgCount'], isRead);
+
+    //add book to library
     Book.addBookToLibrary(newBook)
-    createNewBookCard(newBook.title, newBook.author, newBook.pages, newBook.isRead)
+
+    //set the local storage library to the current updated library
+    Book.setLocalStorage();
+
+    //index of the new book will be UpdatedLibraryArray.length-1
+    let key= myLibrary.length-1;
+    // create the new book card and add to DOM
+    createNewBookCard(key, newBook.title, newBook.author, newBook.pages, newBook.isRead)
     domElements.newBookForm.reset();
     domElements.bookCardsDiv.style.display='flex';
     domElements.addNewBookFormDiv.style.display='none';
-    
 })
 
 //close form btn 
@@ -171,3 +204,26 @@ domElements.closeNewBookForm.addEventListener('click', (e)=>{
     domElements.bookCardsDiv.style.display='flex';
     domElements.addNewBookFormDiv.style.display='none'; 
 })
+
+
+//make a book card for each book in the library
+//
+console.log(myLibrary)
+const render =()=>{
+
+    if(!localStorage.myLibrary)
+        myLibrary.forEach(book => {
+            let key = (myLibrary.indexOf(book))
+            createNewBookCard(key, book.title, book.author, book.pages,book.isRead);
+    })
+    else
+    {
+       let localStorageLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+       localStorageLibrary.forEach(book => {
+           let key = (localStorageLibrary.indexOf(book));
+           createNewBookCard(key, book.title, book.author, book.pages, book.isRead)
+        })
+    }
+}
+
+render();
