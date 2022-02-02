@@ -140,6 +140,8 @@ main{
      font-size: 1.2rem;
      font-weight: 500;
      border-radius: 8px;
+     max-width: 400px;
+    width: 100%;
     display: none;
     flex-direction: column;
     position: relative;
@@ -148,6 +150,7 @@ main{
 #newBookForm{
     display: flex;
     flex-direction: column;
+   
     /* padding-top: 0.5rem; */
     
 }
@@ -170,6 +173,9 @@ main{
 #newBookForm input{
     padding: 0.5rem;
     font-size: 1.2rem;
+}
+#newBookForm input[type= 'text'], input[type='number']{
+    width: 100%;
 }
 #newBookForm input[type= 'radio']{
     transform: scale(1.5);
