@@ -113,7 +113,9 @@ const createNewBookCard= (key ,title,author,pages,isRead)=>{
     
     //add title, author, pages, isRead to each Holder div as per the input
     bookTitlePara.textContent= title;
+    bookTitlePara.title= title;
     bookAuthorPara.textContent= author;
+    bookAuthorPara.title= author;
     bookPageCountHolder.textContent= pages;
     bookReadStatusHolder.textContent= isRead;
 

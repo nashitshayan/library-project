@@ -56,6 +56,8 @@ main{
       flex-flow: row wrap;
     }
   }
+
+
 .bookcard{
     height: 350px;
     width: 400px;
@@ -67,9 +69,8 @@ main{
     display: grid;
     position: relative;
     background-color: var(--clr--neutral);
-    
-
 }
+
 #delete, #closeNewBookForm{
     position: absolute;
     color: var(--clr--accentTwo);
@@ -95,13 +96,10 @@ main{
     /* border: 1px solid black; */
     display: flex;
     align-items: center;
-
-    
 }
 .bookcard >div{
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid green; */
 }
 
 .bookcard div > div + div {
