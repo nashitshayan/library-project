@@ -226,7 +226,6 @@ footer {
 footer a {
 	text-decoration: none;
 	color: #ff0a1a;
-
 	transform: 0.1s ease-in-out;
 }
 footer a:hover {

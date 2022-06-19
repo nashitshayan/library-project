@@ -1,79 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-    <script src="https://kit.fontawesome.com/9787a83363.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./library.js" defer></script>
-</head>
-<body>
-    <header>
-        <h1>Digital Library</h1>
-    </header>
-    <main id="main">
-        <div class="bookcards">
-            <!-- <div class="bookcard">
-                <i id='delete'class="fas fa-minus-circle fa-lg"></i>
-                <div>
-                    <div >Title: </div>
-                    <div class="bookTitle"><p class="overflow">One ShotOne ShotOne ShotOne ShotOne ShotOne ShotOne ShotOne ShotOne Shot</p></div>
-                </div>
-                <div>
-                    <div >Author: </div>
-                    <div class="bookAuthor overflow"></div>
-                </div>
-                <div>
-                    <div >Page Count: </div>
-                    <div class="bookPageCount"></div>
-                </div>
-                <div>
-                    <div >Reading Status: </div>
-                    <div class="bookReadStatus ">Read</div>
-                </div>
-                <button id='changeReadStatus'>Update Status</button>
-            
-            </div> -->
-            <button id="addNew">Add <i class="fas fa-book"></i></button> 
-        </div>
-        
-        <div class="newBookFormWrapper">
-            <i id='closeNewBookForm' class="fas fa-minus-circle fa-lg"></i>
-            <form action="#" id="newBookForm">
-                <div>
-                    <label for="title">Title: </label>
-                    <input type="text" id="title" name="title" required>
-                </div>
-                <div>
-                    <label for="author">Author: </label>
-                    <input type="text" id="author" name="author" required>
-                </div>
-                <div>
-                    <label for="pgCount">Page Count: </label>
-                    <input type="number" min='0' id="pgCount" name="pgCount" required>
-                </div>
-                <div>
-                    <label for="readingStatus">Reading Status: </label>
-                    <div>
-                        <input type="radio" id="read" name="readingStatus" value="read" >
-                        <label for="read">Read</label> 
-                    </div>
-                   <div>
-                        <input type="radio" id="notRead" name="readingStatus" value="notRead" checked>
-                        <label for="readingStatus">Not Read</label>  
-                   </div> 
-                    
-                </div>
-                <button id="submitForm" type="submit">Add New Book</button>
-            </form>
-            
-        </div>
-    </main>
-    <footer>
-        Made by <a href="https://github.com/nashitshayan" target="_blank">Nashit Shayan Khan</a>. Click <a href="https://github.com/nashitshayan/library-project" target="_blank">here</a> to see the code.
-    </footer>
-    
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Library</title>
+		<script
+			src="https://kit.fontawesome.com/9787a83363.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="./styles.css" />
+		<script src="./library.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<h1>Digital Library</h1>
+		</header>
+		<main id="main">
+			<div class="bookcards">
+				<button id="addNew">Add <i class="fas fa-book"></i></button>
+			</div>
+
+			<div class="newBookFormWrapper">
+				<i id="closeNewBookForm" class="fas fa-minus-circle fa-lg"></i>
+				<form action="#" id="newBookForm">
+					<div>
+						<label for="title">Title: </label>
+						<input type="text" id="title" name="title" required />
+					</div>
+					<div>
+						<label for="author">Author: </label>
+						<input type="text" id="author" name="author" required />
+					</div>
+					<div>
+						<label for="pgCount">Page Count: </label>
+						<input type="number" min="0" id="pgCount" name="pgCount" required />
+					</div>
+					<div>
+						Reading Status:
+						<div>
+							<input type="radio" id="read" name="readingStatus" value="read" />
+							<label for="read">Read</label>
+						</div>
+						<div>
+							<input
+								type="radio"
+								id="notRead"
+								name="readingStatus"
+								value="notRead"
+								checked
+							/>
+							<label for="notRead">Not Read</label>
+						</div>
+					</div>
+					<button id="submitForm" type="submit">Add New Book</button>
+				</form>
+			</div>
+		</main>
+		<footer>
+			Made by
+			<a href="https://github.com/nashitshayan" target="_blank"
+				>Nashit Shayan Khan</a
+			>. Click
+			<a href="https://github.com/nashitshayan/library-project" target="_blank"
+				>here</a
+			>
+			to see the code.
+		</footer>
+	</body>
 </html>
