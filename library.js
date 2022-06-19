@@ -35,8 +35,6 @@ class Book {
 	}
 }
 
-//console.log(arr)
-
 //hard coding some sample books
 let b1 = new Book('One Shot', 'Lee Child', 296, false);
 let b2 = new Book('Harry Potter', 'J.K. Rowling', 560, false);
@@ -130,26 +128,21 @@ domElements.bookCardsDiv.addEventListener('click', (e) => {
 		const bookKeyIndex = e.target.parentElement.dataset.keyIndex;
 		//remove the book from the library
 		myLibrary.splice(bookKeyIndex, 1);
-		//render the updated library
-		render();
 	} else if (e.target.id === 'addNew') {
 		domElements.bookCardsDiv.style.display = 'none';
 		domElements.addNewBookFormDiv.style.display = 'flex';
 	} else if (e.target.id === 'changeReadStatus') {
 		let currentReadingStatus = e.target.previousElementSibling.lastElementChild;
 		let currentBook = e.target.parentElement;
-		if (currentReadingStatus.textContent === 'Read') {
-			//change the reading status in the library arr
+		if (currentReadingStatus.textContent === 'Read')
 			myLibrary[currentBook.dataset.keyIndex].isRead = 'Not Read';
-		} else {
-			//change the reading status in the library arr
-			myLibrary[currentBook.dataset.keyIndex].isRead = 'Read';
-		}
-		render();
+		else myLibrary[currentBook.dataset.keyIndex].isRead = 'Read';
 	}
 
 	//set the local storage library to the current updated library
 	Book.setLocalStorage();
+	//render the updated library
+	render();
 });
 
 //new Book Form submit
@@ -195,27 +188,27 @@ domElements.closeNewBookForm.addEventListener('click', (e) => {
 	domElements.addNewBookFormDiv.style.display = 'none';
 });
 
-//make a book card for each book in the library
-// localStorage.clear();
-// console.log('myLibrary', JSON.parse(localStorage.myLibrary));
+// redner all books to the DOM
 const render = () => {
 	//clear up the all books and add the addNewBookBtn
 	domElements.bookCardsDiv.innerHTML = '';
 	domElements.bookCardsDiv.appendChild(createAddNewBookBtn.addNewBookBtn);
 
 	//populate the books
-	//if (!localStorage.myLibrary)
-	myLibrary.forEach((book) => {
-		let key = myLibrary.indexOf(book);
-		createNewBookCard(key, book.title, book.author, book.pages, book.isRead);
-	});
-	//else {
-	// let localStorageLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-	// localStorageLibrary.forEach((book) => {
-	// 	let key = localStorageLibrary.indexOf(book);
-	// 	createNewBookCard(key, book.title, book.author, book.pages, book.isRead);
-	// });
-	//}
+	if (!localStorage.myLibrary)
+		myLibrary.forEach((book) => {
+			let key = myLibrary.indexOf(book);
+			createNewBookCard(key, book.title, book.author, book.pages, book.isRead);
+		});
+	else {
+		let localStorageLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+		localStorageLibrary.forEach((book) => {
+			let key = localStorageLibrary.indexOf(book);
+			createNewBookCard(key, book.title, book.author, book.pages, book.isRead);
+		});
+	}
 };
-
+window.onload = () => {
+	if (localStorage.myLibrary) myLibrary = JSON.parse(localStorage.myLibrary);
+};
 render();
