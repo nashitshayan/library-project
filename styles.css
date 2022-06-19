@@ -40,6 +40,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	margin: 3rem 1rem;
+	position: relative;
 }
 
 .bookcards {
@@ -48,6 +49,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	gap: 3rem;
+	transition: 0.2s ease-in-out;
 }
 
 @media only screen and (min-width: 600px) {
@@ -142,9 +144,13 @@ main {
 	width: 100%;
 	display: none;
 	flex-direction: column;
-	position: relative;
+	position: absolute;
+	top: 0;
+	transition: 0.2s ease-in-out;
 }
-
+.bg-fade {
+	opacity: 20%;
+}
 #newBookForm {
 	display: flex;
 	flex-direction: column;

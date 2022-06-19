@@ -129,7 +129,7 @@ domElements.bookCardsDiv.addEventListener('click', (e) => {
 		//remove the book from the library
 		myLibrary.splice(bookKeyIndex, 1);
 	} else if (e.target.id === 'addNew') {
-		domElements.bookCardsDiv.style.display = 'none';
+		domElements.bookCardsDiv.classList.add('bg-fade');
 		domElements.addNewBookFormDiv.style.display = 'flex';
 	} else if (e.target.id === 'changeReadStatus') {
 		let currentReadingStatus = e.target.previousElementSibling.lastElementChild;
@@ -178,13 +178,13 @@ domElements.newBookForm.addEventListener('submit', (e) => {
 		newBook.isRead,
 	);
 	domElements.newBookForm.reset();
-	domElements.bookCardsDiv.style.display = 'flex';
+	domElements.bookCardsDiv.classList.remove('bg-fade');
 	domElements.addNewBookFormDiv.style.display = 'none';
 });
 
 //close form btn
 domElements.closeNewBookForm.addEventListener('click', (e) => {
-	domElements.bookCardsDiv.style.display = 'flex';
+	domElements.bookCardsDiv.classList.remove('bg-fade');
 	domElements.addNewBookFormDiv.style.display = 'none';
 });
 
