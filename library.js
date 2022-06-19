@@ -129,7 +129,11 @@ domElements.bookCardsDiv.addEventListener('click', (e) => {
 		//remove the book from the library
 		myLibrary.splice(bookKeyIndex, 1);
 	} else if (e.target.id === 'addNew') {
+		//fade the background
 		domElements.bookCardsDiv.classList.add('bg-fade');
+		// open up the form in the correct position. Eg: if user scrolls down and clicks on add new book, the form should pop up there.
+		const formPosition = `${parseInt(window.pageYOffset)}px`;
+		domElements.addNewBookFormDiv.style.top = formPosition;
 		domElements.addNewBookFormDiv.style.display = 'flex';
 	} else if (e.target.id === 'changeReadStatus') {
 		let currentReadingStatus = e.target.previousElementSibling.lastElementChild;

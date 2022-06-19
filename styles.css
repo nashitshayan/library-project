@@ -145,7 +145,7 @@ main {
 	display: none;
 	flex-direction: column;
 	position: absolute;
-	top: 0;
+	/* top: 0; */
 	transition: 0.2s ease-in-out;
 }
 .bg-fade {
@@ -154,8 +154,6 @@ main {
 #newBookForm {
 	display: flex;
 	flex-direction: column;
-
-	/* padding-top: 0.5rem; */
 }
 #newBookForm > * {
 	border-bottom: 1px solid var(--clr--secondary);
