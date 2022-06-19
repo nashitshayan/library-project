@@ -225,10 +225,11 @@ footer {
 }
 footer a {
 	text-decoration: none;
-	color: var(--clr--accentOne);
+	color: #ff0a1a;
+
 	transform: 0.1s ease-in-out;
 }
 footer a:hover {
 	text-decoration: none;
-	color: #f31827;
+	color: var(--clr--accentOne);
 }
