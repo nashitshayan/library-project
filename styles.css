@@ -74,7 +74,7 @@ main {
 #closeNewBookForm {
 	position: absolute;
 	color: var(--clr--accentTwo);
-	transition: 0.1s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 #delete {
 	right: 10px;
@@ -124,6 +124,7 @@ main {
 	right: 1rem;
 	bottom: 4rem;
 	z-index: 1;
+	transition: 0.2s ease-in-out;
 }
 #addNew:hover {
 	font-size: 1.75rem;
