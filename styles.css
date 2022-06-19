@@ -1,241 +1,234 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* border: 1px solid red; */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* border: 1px solid red; */
 }
 
-:root{
-    --ff--main : 'Roboto', sans-serif;
-    --ff--secondary :  'Barlow', sans-serif;
-    --clr--primary: #669bbc;
-    --clr--secondary: #003049;
-    --clr--neutral: #fdf0d5;
-    --clr--accentOne: #c1121f;
-    --clr--accentTwo: #780000;
+:root {
+	--ff--main: 'Roboto', sans-serif;
+	--ff--secondary: 'Barlow', sans-serif;
+	--clr--primary: #669bbc;
+	--clr--secondary: #003049;
+	--clr--neutral: #fdf0d5;
+	--clr--accentOne: #c1121f;
+	--clr--accentTwo: #780000;
 }
 
-
-body{
-    height: 100vh;
-    background-color: var(--clr--primary);
-    line-height: 1.33rem;
-    font-family: var(--ff--main);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+body {
+	height: 100vh;
+	background-color: var(--clr--primary);
+	line-height: 1.33rem;
+	font-family: var(--ff--main);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-header{
-    padding: 2rem;
-    background-color: var(--clr--secondary);
-    color: var(--clr--neutral);
-    font-size: 1.2rem;
-    text-align: center;
+header {
+	padding: 2rem;
+	background-color: var(--clr--secondary);
+	color: var(--clr--neutral);
+	font-size: 1.2rem;
+	text-align: center;
 }
 
-main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 3rem 1rem;
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 3rem 1rem;
 }
 
-.bookcards{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    
+.bookcards {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 3rem;
 }
 
 @media only screen and (min-width: 600px) {
-    .bookcards {
-      flex-flow: row wrap;
-    }
-  }
-
-
-.bookcard{
-    height: 350px;
-    max-width: 400px;
-    width: 100%;
-    padding: 1rem;
-    border: 3px solid var(--clr--secondary); 
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    display: grid;
-    position: relative;
-    background-color: var(--clr--neutral);
+	.bookcards {
+		flex-flow: row wrap;
+	}
 }
 
-#delete, #closeNewBookForm{
-    position: absolute;
-    color: var(--clr--accentTwo);
-    transition: 0.1s ease-in-out;
-}
-#delete{
-    right: 10px;
-    top: 5px;
-}
-#closeNewBookForm{
-    right: 5px;
-    top: 5px;
-    font-size: 1.2rem;
-}
-#delete:hover, #closeNewBookForm:hover{
-    cursor: pointer;
-    font-size: 1.3rem;
-    color: var(--clr--accentOne);
+.bookcard {
+	height: 350px;
+	max-width: 400px;
+	width: 100%;
+	padding: 1rem;
+	border: 3px solid var(--clr--secondary);
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 500;
+	display: grid;
+	position: relative;
+	background-color: var(--clr--neutral);
 }
 
-
-.bookcard> *{
-    /* border: 1px solid black; */
-    display: flex;
-    align-items: center;
+#delete,
+#closeNewBookForm {
+	position: absolute;
+	color: var(--clr--accentTwo);
+	transition: 0.1s ease-in-out;
 }
-.bookcard >div{
-    display: flex;
-    justify-content: space-between;
+#delete {
+	right: 10px;
+	top: 5px;
+}
+#closeNewBookForm {
+	right: 5px;
+	top: 5px;
+	font-size: 1.2rem;
+}
+#delete:hover,
+#closeNewBookForm:hover {
+	cursor: pointer;
+	font-size: 1.3rem;
+	color: var(--clr--accentOne);
+}
+
+.bookcard > * {
+	/* border: 1px solid black; */
+	display: flex;
+	align-items: center;
+}
+.bookcard > div {
+	display: flex;
+	justify-content: space-between;
 }
 
 .bookcard div > div + div {
-    color: #111;
-    font-size: 1.3rem;
-    margin-right: 1rem;
-    min-width: 0;
-    max-width: 17rem;
+	color: #111;
+	font-size: 1.3rem;
+	margin-right: 1rem;
+	min-width: 0;
+	max-width: 17rem;
 }
-.overflow{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+.overflow {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
-#addNew{
-    background: var(--clr--neutral);
-    border: 2px solid var(--clr--secondary);
-    border-radius: 8px;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    position: fixed;
-    right: 1rem;
-    bottom: 4rem;
-    z-index: 1;
+#addNew {
+	background: var(--clr--neutral);
+	border: 2px solid var(--clr--secondary);
+	border-radius: 8px;
+	font-size: 1.5rem;
+	padding: 0.5rem;
+	position: fixed;
+	right: 1rem;
+	bottom: 4rem;
+	z-index: 1;
 }
-#addNew:hover{
-    font-size: 1.75rem;
-    right: 0.75rem;
-    bottom: 3.75rem; 
-    cursor: pointer;
+#addNew:hover {
+	font-size: 1.75rem;
+	right: 0.75rem;
+	bottom: 3.75rem;
+	cursor: pointer;
 }
-
 
 .newBookFormWrapper {
-     background-color: var(--clr--neutral);
-     font-size: 1.2rem;
-     font-weight: 500;
-     border-radius: 8px;
-     max-width: 400px;
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    position: relative;
+	background-color: var(--clr--neutral);
+	font-size: 1.2rem;
+	font-weight: 500;
+	border-radius: 8px;
+	max-width: 400px;
+	width: 100%;
+	display: none;
+	flex-direction: column;
+	position: relative;
 }
 
-#newBookForm{
-    display: flex;
-    flex-direction: column;
-   
-    /* padding-top: 0.5rem; */
-    
-}
-#newBookForm> * {
-    border-bottom: 1px solid var(--clr--secondary);
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
- }
- 
+#newBookForm {
+	display: flex;
+	flex-direction: column;
 
-#newBookForm div>*{
-     display: flex;
-    align-items: center;
+	/* padding-top: 0.5rem; */
 }
-#newBookForm div label{
-    margin-right: 0.75rem;
+#newBookForm > * {
+	border-bottom: 1px solid var(--clr--secondary);
+	padding: 1.5rem;
+	display: flex;
+	justify-content: space-between;
 }
 
-#newBookForm input{
-    padding: 0.5rem;
-    font-size: 1.2rem;
+#newBookForm div > * {
+	display: flex;
+	align-items: center;
 }
-#newBookForm input[type= 'text'], input[type='number']{
-    width: 100%;
-}
-#newBookForm input[type= 'radio']{
-    transform: scale(1.5);
-    margin-right: 0.5rem;
-}
-#newBookForm input[type= 'radio']:hover{
-    cursor: pointer;
-}
-#submitForm{
-    padding: 1.5rem;
-    display: flex;
-    justify-content: center;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border: none;
-    background-color: var(--clr--accentTwo);
-    color: var(--clr--neutral);
-    font-size: 1.2rem;
-    transition: 0.2s ease-in-out;
-}
-#submitForm:hover{
-    font-size: 1.3rem;
-    padding: 1.4rem;
-    background-color: var(--clr--accentOne);
-    cursor: pointer;
+#newBookForm div label {
+	margin-right: 0.75rem;
 }
 
-#changeReadStatus{
-    display: flex;
-    justify-content: center;
-    background-color: var(--clr--accentTwo);
-    color: var(--clr--neutral);
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 8px;
-    transition: 0.2s ease-in-out;
-
+#newBookForm input {
+	padding: 0.5rem;
+	font-size: 1.2rem;
 }
-#changeReadStatus:hover{
-    font-size: 1.3rem;
-    background-color: var(--clr--accentOne);
-    cursor: pointer;
+#newBookForm input[type='text'],
+input[type='number'] {
+	width: 100%;
 }
-
-footer{
-    background-color: var(--clr--secondary);
-    font-family: var(--ff--secondary);
-    color: var(--clr--neutral);
-    padding: 2rem;
-    text-align: center;
-    word-spacing: 0.1rem;
-    letter-spacing: 0.1rem;
+#newBookForm input[type='radio'] {
+	transform: scale(1.5);
+	margin-right: 0.5rem;
 }
-footer a{
-    text-decoration: none;
-    color: var(--clr--accentOne);
-    transform: 0.1s ease-in-out;
+#newBookForm input[type='radio']:hover {
+	cursor: pointer;
 }
-footer a:hover{
-    text-decoration: none;
-    color: #f31827;
+#submitForm {
+	padding: 1.5rem;
+	display: flex;
+	justify-content: center;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border: none;
+	background-color: var(--clr--accentTwo);
+	color: var(--clr--neutral);
+	font-size: 1.2rem;
+	transition: 0.2s ease-in-out;
+}
+#submitForm:hover {
+	font-size: 1.3rem;
+	padding: 1.4rem;
+	background-color: var(--clr--accentOne);
+	cursor: pointer;
 }
 
+#changeReadStatus {
+	display: flex;
+	justify-content: center;
+	background-color: var(--clr--accentTwo);
+	color: var(--clr--neutral);
+	font-size: 1.2rem;
+	border: none;
+	border-radius: 8px;
+	transition: 0.2s ease-in-out;
+}
+#changeReadStatus:hover {
+	background-color: var(--clr--accentOne);
+	cursor: pointer;
+}
+
+footer {
+	background-color: var(--clr--secondary);
+	font-family: var(--ff--secondary);
+	color: var(--clr--neutral);
+	padding: 2rem;
+	text-align: center;
+	word-spacing: 0.1rem;
+	letter-spacing: 0.1rem;
+}
+footer a {
+	text-decoration: none;
+	color: var(--clr--accentOne);
+	transform: 0.1s ease-in-out;
+}
+footer a:hover {
+	text-decoration: none;
+	color: #f31827;
+}
