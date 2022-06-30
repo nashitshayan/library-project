@@ -1,6 +1,6 @@
 # LIBRARY APP
 # 👉[Live Preview](https://nashitshayan.github.io/library-project/)👈
-![projectDemo](https://media.giphy.com/media/SyX935IMvv353KcgGz/giphy.gif)
+![projectDemo](https://media.giphy.com/media/cs1axDXKQMmYq46hij/giphy.gif)
 
 ## Description
 > An online libarry that allows the user to add, update or delete books. Once done reading, they can also change the reading status. The library is stored in the user's browser local storage so the data will not get lost upon reload or window/tab close. 
