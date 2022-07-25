@@ -10,10 +10,10 @@ const domElements = (() => {
 })();
 
 const createAddNewBookBtn = (() => {
-	const addNewBookBtn = document.createElement('button');
-	addNewBookBtn.id = 'addNew';
-	addNewBookBtn.innerHTML = `Add <i class="fas fa-book"></i>`;
-
+	const addNewBookBtn = R.compose(
+		attr('id', 'addNew'),
+		setInnerHTML(`Add <i class="fas fa-book"></i>`),
+	)(elem('button'));
 	return { addNewBookBtn };
 })();
 
@@ -34,7 +34,7 @@ class Book {
 		window.localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 	}
 }
-
+//localStorage.clear();
 //hard coding some sample books
 let b1 = new Book('One Shot', 'Lee Child', 296, false);
 let b2 = new Book('Harry Potter', 'J.K. Rowling', 560, false);
@@ -49,83 +49,79 @@ Book.addBookToLibrary(b1, b2, b3, b4, b5, b6);
 // function to create and populate book cards
 
 const createNewBookCard = (key, title, author, pages, isRead) => {
-	//create the bookcard wrapper div and add to bookcards
-	let bookCard = document.createElement('div');
-	bookCard.classList.add('bookcard');
-	bookCard.dataset.keyIndex = key;
-	domElements.bookCardsDiv.appendChild(bookCard);
+	let delBtnIcon = R.compose(
+		attr('id', 'delete'),
+		attr('class', 'fas fa-minus-circle fa-lg'),
+	)(elem('i'));
 
-	// create and add the delete icon
-	let delBtnIcon = document.createElement('i');
-	delBtnIcon.id = 'delete';
-	delBtnIcon.classList.add('fas', 'fa-minus-circle', 'fa-lg');
+	let bookTitleLabel = setContent('Title:', elem('div'));
+	let bookTitleHolder = attr('class', 'bookTitle', elem('div'));
+	let bookTitleText = R.compose(
+		setContent(title),
+		attr('class', 'overflow'),
+	)(elem('p'));
+	append(bookTitleText, bookTitleHolder);
 
-	//create and add the four child wrapper divs to bookcard
-	let bookTitleWrapper = document.createElement('div');
-	let bookAuthorWrapper = document.createElement('div');
-	let bookPageCountWrapper = document.createElement('div');
-	let bookReadStatusWrapper = document.createElement('div');
+	let bookAuthorLabel = setContent('Author:', elem('div'));
+	let bookAuthorHolder = attr('class', 'bookAuthor', elem('div'));
+	let bookAuthorText = R.compose(
+		setContent(author),
+		attr('class', 'overflow'),
+	)(elem('p'));
+	append(bookAuthorText, bookAuthorHolder);
 
-	bookCard.append(
-		delBtnIcon,
-		bookTitleWrapper,
-		bookAuthorWrapper,
-		bookPageCountWrapper,
-		bookReadStatusWrapper,
-	);
+	let bookPageCountLabel = setContent('Page Count:', elem('div'));
+	let bookPageCountHolder = R.compose(
+		setContent(pages),
+		attr('class', 'bookPageCount'),
+	)(elem('div'));
 
-	//create and add two child divs for each wrapper
-	let bookTitleLabel = document.createElement('div');
-	bookTitleLabel.textContent = 'Title: ';
-	let bookTitleHolder = document.createElement('div');
-	bookTitleHolder.classList.add('bookTitle');
-	let bookTitlePara = document.createElement('p');
-	bookTitleHolder.appendChild(bookTitlePara);
-	bookTitlePara.classList.add('overflow');
+	let bookReadStatusLabel = setContent('Reading Status:', elem('div'));
+	let bookReadStatusHolder = R.compose(
+		setContent(isRead),
+		attr('class', 'bookReadStatus'),
+	)(elem('div'));
 
-	let bookAuthorLabel = document.createElement('div');
-	bookAuthorLabel.textContent = 'Author: ';
-	let bookAuthorHolder = document.createElement('div');
-	bookAuthorHolder.classList.add('bookAuthor');
-	let bookAuthorPara = document.createElement('p');
-	bookAuthorHolder.appendChild(bookAuthorPara);
-	bookAuthorPara.classList.add('overflow');
+	let bookTitleWrapper = R.compose(
+		append(bookTitleHolder),
+		append(bookTitleLabel),
+	)(elem('div'));
+	let bookAuthorWrapper = R.compose(
+		append(bookAuthorHolder),
+		append(bookAuthorLabel),
+	)(elem('div'));
+	let bookPageCountWrapper = R.compose(
+		append(bookPageCountHolder),
+		append(bookPageCountLabel),
+	)(elem('div'));
+	let bookReadStatusWrapper = R.compose(
+		append(bookReadStatusHolder),
+		append(bookReadStatusLabel),
+	)(elem('div'));
 
-	let bookPageCountLabel = document.createElement('div');
-	bookPageCountLabel.textContent = 'Page Count: ';
-	let bookPageCountHolder = document.createElement('div');
-	bookPageCountHolder.classList.add('bookPageCount');
+	let updateReadStatusBtn = R.compose(
+		setContent('Update Status'),
+		attr('id', 'changeReadStatus'),
+	)(elem('button'));
 
-	let bookReadStatusLabel = document.createElement('div');
-	bookReadStatusLabel.textContent = 'Reading Status: ';
-	let bookReadStatusHolder = document.createElement('div');
-	bookReadStatusHolder.classList.add('bookReadStatus');
+	let bookCard = R.compose(
+		append(updateReadStatusBtn),
+		append(bookReadStatusWrapper),
+		append(bookPageCountWrapper),
+		append(bookAuthorWrapper),
+		append(bookTitleWrapper),
+		append(delBtnIcon),
+		attr('class', 'bookcard'),
+		attr('data-id', `${key}`),
+	)(elem('div'));
 
-	bookTitleWrapper.append(bookTitleLabel, bookTitleHolder);
-	bookAuthorWrapper.append(bookAuthorLabel, bookAuthorHolder);
-	bookPageCountWrapper.append(bookPageCountLabel, bookPageCountHolder);
-	bookReadStatusWrapper.append(bookReadStatusLabel, bookReadStatusHolder);
-
-	//add title, author, pages, isRead to each Holder div as per the input
-	bookTitlePara.textContent = title;
-	bookTitlePara.title = title;
-	bookAuthorPara.textContent = author;
-	bookAuthorPara.title = author;
-	bookPageCountHolder.textContent = pages;
-	bookReadStatusHolder.textContent = isRead;
-
-	//create and add the update status btn
-	let updateReadStatusBtn = document.createElement('button');
-	updateReadStatusBtn.id = 'changeReadStatus';
-	updateReadStatusBtn.textContent = 'Update Status';
-
-	bookCard.appendChild(updateReadStatusBtn);
+	grab('.bookcards').append(bookCard);
 };
 
 //event lister on the parent div for event delegation.
 domElements.bookCardsDiv.addEventListener('click', (e) => {
 	if (e.target.id === 'delete') {
-		const bookKeyIndex = e.target.parentElement.dataset.keyIndex;
+		const bookKeyIndex = e.target.parentElement.dataset.id;
 		//remove the book from the library
 		myLibrary.splice(bookKeyIndex, 1);
 	} else if (e.target.id === 'addNew') {
@@ -139,8 +135,8 @@ domElements.bookCardsDiv.addEventListener('click', (e) => {
 		let currentReadingStatus = e.target.previousElementSibling.lastElementChild;
 		let currentBook = e.target.parentElement;
 		if (currentReadingStatus.textContent === 'Read')
-			myLibrary[currentBook.dataset.keyIndex].isRead = 'Not Read';
-		else myLibrary[currentBook.dataset.keyIndex].isRead = 'Read';
+			myLibrary[currentBook.dataset.id].isRead = 'Not Read';
+		else myLibrary[currentBook.dataset.id].isRead = 'Read';
 	}
 
 	//set the local storage library to the current updated library
