@@ -118,32 +118,40 @@ const createNewBookCard = (key, title, author, pages, isRead) => {
 	grab('.bookcards').append(bookCard);
 };
 
-//event lister on the parent div for event delegation.
-domElements.bookCardsDiv.addEventListener('click', (e) => {
-	if (e.target.id === 'delete') {
-		const bookKeyIndex = e.target.parentElement.dataset.id;
-		//remove the book from the library
-		myLibrary.splice(bookKeyIndex, 1);
-	} else if (e.target.id === 'addNew') {
-		//fade the background
-		domElements.bookCardsDiv.classList.add('bg-fade');
-		// open up the form in the correct position. Eg: if user scrolls down and clicks on add new book, the form should pop up there.
-		const formPosition = `${parseInt(window.pageYOffset)}px`;
-		domElements.addNewBookFormDiv.style.top = formPosition;
-		domElements.addNewBookFormDiv.style.display = 'flex';
-	} else if (e.target.id === 'changeReadStatus') {
-		let currentReadingStatus = e.target.previousElementSibling.lastElementChild;
-		let currentBook = e.target.parentElement;
-		if (currentReadingStatus.textContent === 'Read')
-			myLibrary[currentBook.dataset.id].isRead = 'Not Read';
-		else myLibrary[currentBook.dataset.id].isRead = 'Read';
-	}
+const handleDelete = (index) => myLibrary.splice(index, 1);
+const handleAddForm = () => {
+	addClass('bg-fade', grab('.bookcards'));
+	R.compose(
+		setStyle('top', `${parseInt(window.pageYOffset)}px`),
+		setStyle('display', 'flex'),
+	)(grab('.newBookFormWrapper'));
+};
+const handleChangeStatus = (currentStatus, currentBookIndex) =>
+	(myLibrary[currentBookIndex].isRead =
+		currentStatus === 'Read' ? 'Not Read' : 'Read');
 
-	//set the local storage library to the current updated library
-	Book.setLocalStorage();
-	//render the updated library
-	render();
-});
+const app = (dispatch) => {
+	const addEvents = dispatch((e) => {
+		const id = e.target.id;
+		id === 'delete'
+			? handleDelete(e.target.parentElement.dataset.id)
+			: id === 'addNew'
+			? handleAddForm()
+			: id === 'changeReadStatus'
+			? handleChangeStatus(
+					e.target.previousElementSibling.lastElementChild.textContent,
+					e.target.parentElement.dataset.id,
+			  )
+			: undefined;
+
+		//set the local storage library to the current updated library
+		Book.setLocalStorage();
+		//render the updated library
+		render();
+	});
+};
+const onCards = on('click', grab('.bookcards'));
+app(onCards);
 
 //new Book Form submit
 domElements.newBookForm.addEventListener('submit', (e) => {
